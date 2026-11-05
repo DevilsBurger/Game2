@@ -1,0 +1,1413 @@
+{
+  "meta": {
+    "version": "0.13",
+    "description": "ROOM ZERO balance parameters. Single source of truth for docs/Parameters.md and the sim/ simulator.",
+    "units": {
+      "length": "m",
+      "time": "s",
+      "angle": "deg",
+      "hp": "points"
+    }
+  },
+  "global": {
+    "sim_dt": 0.05,
+    "max_room_time": 240.0,
+    "room_sizes": {
+      "standard": [
+        20.0,
+        11.0
+      ],
+      "large": [
+        30.0,
+        16.0
+      ],
+      "corridor": [
+        44.0,
+        9.0
+      ]
+    },
+    "door_transition_time": 2.0,
+    "spawn": {
+      "telegraph_time": 0.8,
+      "min_distance_from_player": 6.0,
+      "next_wave_when_alive_leq": 2,
+      "wave_gap": 1.0,
+      "max_concurrent": 24,
+      "stagger": 0.4
+    },
+    "player_common": {
+      "hitbox_radius": 0.4,
+      "pickup_radius": 1.0,
+      "hit_iframes": 0.4,
+      "charges_max": 10,
+      "charges_start": 5,
+      "instances_per_stage": 3,
+      "override_min_enemy_distance": 4.0
+    },
+    "pickups": {
+      "chip_drop_chance": {
+        "grunt": 0.04,
+        "elite": 0.5,
+        "vehicle": 1.0
+      },
+      "charge_drop_chance": {
+        "grunt": 0.05,
+        "elite": 0.5,
+        "vehicle": 0.0
+      },
+      "rescue_reward": {
+        "chip": 0.5,
+        "charges": 0.3,
+        "memory": 0.2
+      },
+      "rescue_charges": 2
+    },
+    "grades": {
+      "S": {
+        "time_mult": 1.0,
+        "damage_frac": 0.15
+      },
+      "A": {
+        "time_mult": 1.3,
+        "damage_frac": 0.35
+      },
+      "B": {
+        "time_mult": 1.7,
+        "damage_frac": 0.6
+      }
+    },
+    "chapter_scaling": {
+      "enemy_hp_mult": [
+        1.0,
+        1.1,
+        1.2,
+        1.3,
+        1.4,
+        1.5
+      ],
+      "enemy_dmg_mult": [
+        1.0,
+        1.05,
+        1.1,
+        1.15,
+        1.2,
+        1.25
+      ],
+      "enemy_speed_mult": [
+        1.0,
+        1.0,
+        1.0,
+        1.05,
+        1.05,
+        1.05
+      ]
+    },
+    "difficulty": {
+      "assist": {
+        "enemy_hp_mult": 0.85,
+        "enemy_dmg_mult": 0.6,
+        "instances": 5,
+        "auto_target": true
+      },
+      "normal": {
+        "enemy_hp_mult": 1.0,
+        "enemy_dmg_mult": 1.0,
+        "instances": 3,
+        "auto_target": false
+      },
+      "hard": {
+        "enemy_hp_mult": 1.3,
+        "enemy_dmg_mult": 1.4,
+        "instances": 2,
+        "auto_target": false
+      },
+      "arcade": {
+        "enemy_hp_mult": 1.3,
+        "enemy_dmg_mult": 1.4,
+        "instances": 1,
+        "modules_disabled": true
+      }
+    },
+    "room_rules": {
+      "tpose_wake_range": 4.0,
+      "tpose_chain_range": 3.0,
+      "deletion_wall": {
+        "speed": 3.0,
+        "dps": 8.0
+      },
+      "defend_node_radius": 0.8,
+      "rescue_interaction_time": 1.5
+    },
+    "bot_skill": {
+      "novice": {
+        "reaction": 0.45,
+        "dodge_prob": 0.35,
+        "aim_error_deg": 8.0,
+        "decision_period": 0.3,
+        "tactic_prob": 0.5,
+        "telegraph_dodge_prob": 0.5
+      },
+      "average": {
+        "reaction": 0.3,
+        "dodge_prob": 0.6,
+        "aim_error_deg": 4.0,
+        "decision_period": 0.2,
+        "tactic_prob": 0.75,
+        "telegraph_dodge_prob": 0.75
+      },
+      "expert": {
+        "reaction": 0.18,
+        "dodge_prob": 0.85,
+        "aim_error_deg": 1.5,
+        "decision_period": 0.1,
+        "tactic_prob": 0.95,
+        "telegraph_dodge_prob": 0.95
+      }
+    },
+    "progression_assumption": {
+      "description": "평균 플레이어가 각 챕터 진입 시 보유한 공용 모듈 레벨(트리당). 시뮬레이션에만 쓰는 가정값.",
+      "levels_by_chapter": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "hp_per_level": 6,
+      "dmg_mult_per_level": 0.025,
+      "dash_cd_mult_per_level": -0.03,
+      "ammo_mult_per_level": 0.04,
+      "charges_per_level": 0.3
+    },
+    "skill_growth_per_chapter": 0.03
+  },
+  "characters": {
+    "trigger": {
+      "display": "트리거 (건)",
+      "hp": 105,
+      "move_speed": 5.5,
+      "attack_move_mult": 1.0,
+      "basic": {
+        "kind": "ranged",
+        "damage": 14,
+        "interval": 0.2,
+        "proj_speed": 25.0,
+        "range": 12.0,
+        "spread_deg": 2.0,
+        "pellets": 1
+      },
+      "melee_auto": {
+        "range": 1.3,
+        "damage": 45,
+        "interval": 0.4
+      },
+      "dash": {
+        "distance": 4.0,
+        "duration": 0.2,
+        "iframes": 0.25,
+        "cooldown": 1.2,
+        "damage": 0,
+        "super_armor": false,
+        "pass_through": true
+      },
+      "skill": {
+        "kind": "grenade",
+        "damage": 60,
+        "radius": 2.5,
+        "range": 8.0,
+        "flight": 0.8,
+        "cast": 0.2,
+        "cooldown": 1.0
+      },
+      "passive": {
+        "chip_ammo_mult": 1.25,
+        "last_mag_frac": 0.25,
+        "last_mag_dmg_mult": 1.5
+      },
+      "override": {
+        "kind": "hold",
+        "time": 3.0
+      }
+    },
+    "knuckle": {
+      "display": "너클 (격투)",
+      "hp": 140,
+      "move_speed": 5.0,
+      "attack_move_mult": 0.5,
+      "basic": {
+        "kind": "melee_combo",
+        "damages": [
+          18,
+          18,
+          30
+        ],
+        "interval": 0.3,
+        "range": 1.6,
+        "arc_deg": 90,
+        "knockback_last": 3.0,
+        "super_armor": true,
+        "dmg_reduction": 0.4,
+        "combo_reset": 0.8
+      },
+      "hold": {
+        "kind": "grab_throw",
+        "range": 1.6,
+        "grab_time": 0.3,
+        "throw_speed": 15.0,
+        "throw_damage": 40,
+        "wall_kill": true,
+        "wall_damage": 30,
+        "throw_range": 12.0,
+        "land_knockdown": 1.0
+      },
+      "dash": {
+        "distance": 6.0,
+        "duration": 0.3,
+        "iframes": 0.0,
+        "cooldown": 1.6,
+        "damage": 25,
+        "knockdown": 1.0,
+        "super_armor": true,
+        "pass_through": true,
+        "wall_slam_bonus": 30,
+        "wall_slam_range": 1.2,
+        "dmg_reduction": 0.5
+      },
+      "skill": {
+        "kind": "slam",
+        "damage": 50,
+        "radius": 3.5,
+        "knockdown": 1.2,
+        "cast": 0.4,
+        "cooldown": 1.0,
+        "clears_projectiles": true
+      },
+      "passive": {
+        "heal_on_melee_kill": 6
+      },
+      "override": {
+        "kind": "hold",
+        "time": 1.5,
+        "carry_sentry": true,
+        "carry_shots": 60,
+        "carry_speed_mult": 0.8,
+        "super_armor": true,
+        "carry_hp_frac": 0.5,
+        "carry_dmg_mult": 2.5,
+        "carry_interval": 0.2,
+        "carry_time": 1.0
+      }
+    },
+    "edge": {
+      "display": "엣지 (검술)",
+      "hp": 120,
+      "move_speed": 5.5,
+      "attack_move_mult": 0.7,
+      "basic": {
+        "kind": "melee_arc",
+        "damages": [
+          15,
+          15,
+          22
+        ],
+        "interval": 0.28,
+        "range": 2.2,
+        "arc_deg": 120,
+        "step": 0.6,
+        "reflect": true,
+        "reflect_dmg_mult": 1.5,
+        "active_frames": 0.16,
+        "combo_reset": 0.8,
+        "knockback_last": 1.5,
+        "lunge_if_farther_than": 0.75
+      },
+      "hold": {
+        "kind": "line",
+        "charge": 0.5,
+        "length": 8.0,
+        "width": 1.0,
+        "damage": 45,
+        "pierce": true
+      },
+      "dash": {
+        "distance": 5.0,
+        "duration": 0.2,
+        "iframes": 0.25,
+        "cooldown": 1.2,
+        "damage": 20,
+        "super_armor": false,
+        "pass_through": true
+      },
+      "skill": {
+        "kind": "wave",
+        "damage": 40,
+        "range": 14.0,
+        "width": 1.5,
+        "speed": 18.0,
+        "cast": 0.25,
+        "cooldown": 1.0,
+        "clears_projectiles": true
+      },
+      "passive": {
+        "counter_window": 0.2,
+        "counter_damage": 30,
+        "counter_range": 3.0
+      },
+      "override": {
+        "kind": "dash_assassinate",
+        "time": 0.0
+      }
+    }
+  },
+  "chips": {
+    "H": {
+      "display": "헤비",
+      "trigger": {
+        "damage": 8,
+        "interval": 0.1,
+        "proj_speed": 28.0,
+        "range": 13.0,
+        "spread_deg": 4.0,
+        "pellets": 1,
+        "ammo": 150
+      },
+      "knuckle": {
+        "extra_ranged": {
+          "damage": 8,
+          "range": 8.0,
+          "proj_speed": 22.0
+        },
+        "hits": 60
+      },
+      "edge": {
+        "attack_speed_mult": 1.6,
+        "per_hit_wave": {
+          "damage": 10,
+          "range": 4.0,
+          "speed": 16.0
+        },
+        "hits": 60
+      }
+    },
+    "S": {
+      "display": "스캐터",
+      "trigger": {
+        "damage": 9,
+        "interval": 0.55,
+        "proj_speed": 22.0,
+        "range": 6.0,
+        "spread_deg": 25.0,
+        "pellets": 7,
+        "knockback": 2.5,
+        "ammo": 30
+      },
+      "knuckle": {
+        "hit_aoe": {
+          "radius": 2.5,
+          "arc_deg": 120,
+          "knockback": 3.0,
+          "damage": 15
+        },
+        "hits": 25
+      },
+      "edge": {
+        "arc_deg": 360,
+        "range_mult": 1.1,
+        "hits": 30
+      }
+    },
+    "R": {
+      "display": "로켓",
+      "trigger": {
+        "damage": 70,
+        "interval": 0.9,
+        "proj_speed": 16.0,
+        "range": 14.0,
+        "homing": true,
+        "aoe_radius": 1.8,
+        "ammo": 15
+      },
+      "knuckle": {
+        "hold_replace": {
+          "kind": "rocket_punch",
+          "damage": 60,
+          "proj_speed": 20.0,
+          "range": 10.0,
+          "aoe_radius": 1.8
+        },
+        "hits": 12
+      },
+      "edge": {
+        "dash_explosion": {
+          "damage": 45,
+          "radius": 2.5
+        },
+        "dash_cooldown_mult": 0.6,
+        "hits": 10
+      }
+    },
+    "F": {
+      "display": "플레임",
+      "trigger": {
+        "damage": 6,
+        "interval": 0.1,
+        "proj_speed": 10.0,
+        "range": 6.0,
+        "spread_deg": 10.0,
+        "pellets": 1,
+        "burn_dps": 8,
+        "burn_time": 2.0,
+        "ammo": 100
+      },
+      "knuckle": {
+        "ground_fire": {
+          "radius": 1.5,
+          "dps": 15,
+          "duration": 2.5
+        },
+        "hits": 30
+      },
+      "edge": {
+        "fire_trail": {
+          "radius": 1.0,
+          "dps": 15,
+          "duration": 2.0
+        },
+        "hits": 35
+      }
+    },
+    "L": {
+      "display": "레이저",
+      "trigger": {
+        "damage": 30,
+        "interval": 0.35,
+        "proj_speed": 60.0,
+        "range": 16.0,
+        "spread_deg": 0.5,
+        "pellets": 1,
+        "pierce": true,
+        "ammo": 60
+      },
+      "knuckle": {
+        "extra_ranged": {
+          "damage": 20,
+          "range": 6.0,
+          "proj_speed": 60.0,
+          "pierce": true
+        },
+        "hits": 30
+      },
+      "edge": {
+        "range_mult": 2.0,
+        "pierce": true,
+        "hits": 40
+      }
+    },
+    "C": {
+      "display": "체이서",
+      "trigger": {
+        "damage": 7,
+        "interval": 0.15,
+        "proj_speed": 14.0,
+        "range": 14.0,
+        "spread_deg": 15.0,
+        "pellets": 1,
+        "homing": true,
+        "ammo": 100
+      },
+      "knuckle": {
+        "orbitals": {
+          "count": 2,
+          "damage": 8,
+          "interval": 0.4,
+          "range": 5.0
+        },
+        "hits": 50
+      },
+      "edge": {
+        "orbitals": {
+          "count": 2,
+          "damage": 9,
+          "interval": 0.4,
+          "range": 5.0
+        },
+        "hits": 50
+      }
+    }
+  },
+  "enemies": {
+    "rifle": {
+      "display": "더미 라이플",
+      "tier": "grunt",
+      "hp": 45,
+      "speed": 3.0,
+      "radius": 0.4,
+      "behavior": "ranged",
+      "stop_range": 8.0,
+      "fire_range": 10.0,
+      "retreat_range": 3.0,
+      "attack": {
+        "telegraph": 0.6,
+        "burst": 3,
+        "burst_gap": 0.12,
+        "damage": 8,
+        "proj_speed": 12.0,
+        "spread_deg": 6.0,
+        "cooldown": 1.8
+      },
+      "throwable": true,
+      "reflectable": true,
+      "score": 100,
+      "spawn_cost": 1
+    },
+    "rusher": {
+      "display": "러셔",
+      "tier": "grunt",
+      "hp": 30,
+      "speed": 6.5,
+      "radius": 0.4,
+      "behavior": "melee",
+      "attack": {
+        "range": 1.2,
+        "windup": 0.35,
+        "hit_range": 1.6,
+        "damage": 12,
+        "cooldown": 1.2
+      },
+      "throwable": true,
+      "score": 80,
+      "spawn_cost": 1
+    },
+    "shielder": {
+      "display": "쉴더",
+      "tier": "grunt",
+      "hp": 80,
+      "speed": 2.5,
+      "radius": 0.45,
+      "behavior": "melee",
+      "shield_arc_deg": 100,
+      "attack": {
+        "range": 1.5,
+        "windup": 0.6,
+        "hit_range": 1.9,
+        "damage": 15,
+        "cooldown": 2.0
+      },
+      "throwable": true,
+      "score": 150,
+      "spawn_cost": 2,
+      "shield_hp": 60,
+      "shield_down_time": 3.0,
+      "turn_rate_deg": 150.0
+    },
+    "sentry": {
+      "display": "센트리",
+      "tier": "grunt",
+      "hp": 110,
+      "speed": 0.0,
+      "radius": 0.5,
+      "behavior": "turret",
+      "turn_rate_deg": 90.0,
+      "fire_range": 10.0,
+      "aim_tolerance_deg": 10.0,
+      "attack": {
+        "stream_time": 1.5,
+        "shot_gap": 0.25,
+        "damage": 5,
+        "proj_speed": 14.0,
+        "spread_deg": 4.0,
+        "cooldown": 1.5
+      },
+      "throwable": false,
+      "overridable": true,
+      "score": 150,
+      "spawn_cost": 2
+    },
+    "shooter": {
+      "display": "슈터",
+      "tier": "grunt",
+      "hp": 50,
+      "speed": 3.5,
+      "radius": 0.4,
+      "behavior": "sniper",
+      "min_range": 9.0,
+      "max_range": 14.0,
+      "attack": {
+        "telegraph": 1.2,
+        "lock_at": 0.9,
+        "damage": 22,
+        "proj_speed": 30.0,
+        "cooldown": 3.0,
+        "reposition": 3.0
+      },
+      "throwable": true,
+      "score": 200,
+      "spawn_cost": 2
+    },
+    "bomber": {
+      "display": "폭탄병",
+      "tier": "grunt",
+      "hp": 45,
+      "speed": 3.0,
+      "radius": 0.4,
+      "behavior": "lobber",
+      "min_range": 6.0,
+      "max_range": 9.0,
+      "attack": {
+        "telegraph": 0.5,
+        "flight": 1.0,
+        "aoe_radius": 2.0,
+        "damage": 16,
+        "cooldown": 2.5
+      },
+      "throwable": true,
+      "score": 150,
+      "spawn_cost": 2
+    },
+    "zombie": {
+      "base": "rusher",
+      "display": "오염 데이터",
+      "hp": 40,
+      "speed": 4.5,
+      "attack": {
+        "damage": 8
+      },
+      "score": 60,
+      "spawn_cost": 1
+    },
+    "brute": {
+      "display": "변이체",
+      "tier": "elite",
+      "hp": 160,
+      "speed": 3.5,
+      "radius": 0.7,
+      "behavior": "melee",
+      "knockback_resist": true,
+      "attack": {
+        "range": 2.0,
+        "windup": 0.8,
+        "hit_range": 2.4,
+        "damage": 20,
+        "cooldown": 2.0
+      },
+      "throwable": false,
+      "score": 400,
+      "spawn_cost": 3
+    },
+    "knight": {
+      "base": "shielder",
+      "display": "기사",
+      "hp": 110,
+      "speed": 2.8,
+      "attack": {
+        "damage": 16
+      },
+      "score": 200,
+      "spawn_cost": 2,
+      "shield_hp": 90,
+      "shield_down_time": 3.0,
+      "turn_rate_deg": 150.0
+    },
+    "archer": {
+      "base": "rifle",
+      "display": "궁수",
+      "hp": 45,
+      "stop_range": 9.0,
+      "fire_range": 12.0,
+      "attack": {
+        "telegraph": 0.8,
+        "burst": 1,
+        "burst_gap": 0.0,
+        "damage": 12,
+        "proj_speed": 10.0,
+        "spread_deg": 3.0,
+        "cooldown": 2.2
+      },
+      "score": 120
+    },
+    "mage": {
+      "base": "bomber",
+      "display": "마법사",
+      "hp": 50,
+      "min_range": 7.0,
+      "max_range": 10.0,
+      "attack": {
+        "telegraph": 1.0,
+        "flight": 1.4,
+        "aoe_radius": 1.5,
+        "damage": 18,
+        "cooldown": 3.0
+      },
+      "score": 200
+    },
+    "drone": {
+      "base": "rusher",
+      "display": "보안 드론",
+      "hp": 28,
+      "speed": 6.5,
+      "attack": {
+        "damage": 8,
+        "windup": 0.4
+      },
+      "throwable": false,
+      "flying": true,
+      "score": 100
+    },
+    "laser_sentry": {
+      "base": "sentry",
+      "display": "레이저 센트리",
+      "hp": 130,
+      "behavior": "beam_turret",
+      "fire_range": 12.0,
+      "aim_tolerance_deg": 15.0,
+      "attack": {
+        "telegraph": 1.0,
+        "lock_at": 0.5,
+        "beam_length": 12.0,
+        "beam_width": 0.6,
+        "damage": 20,
+        "cooldown": 2.5
+      },
+      "reflectable": false,
+      "score": 250,
+      "spawn_cost": 3
+    },
+    "debugger": {
+      "display": "디버거",
+      "tier": "elite",
+      "hp": 160,
+      "speed": 0.0,
+      "radius": 0.45,
+      "behavior": "teleporter",
+      "teleport_every": 4.0,
+      "teleport_range": [
+        6.0,
+        8.0
+      ],
+      "attack": {
+        "telegraph": 1.0,
+        "lock_at": 0.5,
+        "beam_length": 12.0,
+        "beam_width": 0.6,
+        "damage": 22,
+        "cooldown": 3.0
+      },
+      "reflectable": false,
+      "throwable": false,
+      "score": 600,
+      "spawn_cost": 5,
+      "materialize": 0.6
+    },
+    "apc": {
+      "display": "진압 장갑차",
+      "tier": "vehicle",
+      "hp": 300,
+      "speed": 2.0,
+      "radius": 1.2,
+      "behavior": "vehicle",
+      "stop_range": 8.0,
+      "fire_range": 12.0,
+      "attack": {
+        "telegraph": 0.4,
+        "burst": 5,
+        "burst_gap": 0.1,
+        "damage": 8,
+        "proj_speed": 14.0,
+        "spread_deg": 5.0,
+        "cooldown": 2.5
+      },
+      "stun_hp_frac": 0.25,
+      "stun_time": 6.0,
+      "overridable": true,
+      "throwable": false,
+      "score": 800,
+      "spawn_cost": 6,
+      "pilot": {
+        "hp": 200,
+        "speed": 4.0,
+        "radius": 1.0,
+        "gun": {
+          "damage": 20,
+          "interval": 0.15,
+          "proj_speed": 25.0,
+          "range": 14.0,
+          "spread_deg": 3.0
+        },
+        "sub": {
+          "damage": 80,
+          "aoe_radius": 2.5,
+          "range": 10.0,
+          "flight": 0.6,
+          "cooldown": 4.0
+        }
+      }
+    },
+    "tank": {
+      "base": "apc",
+      "display": "전차",
+      "hp": 450,
+      "speed": 1.5,
+      "radius": 1.5,
+      "score": 1200,
+      "spawn_cost": 8,
+      "cannon": {
+        "telegraph": 1.0,
+        "damage": 30,
+        "proj_speed": 15.0,
+        "aoe_radius": 2.0,
+        "cooldown": 4.0
+      },
+      "pilot": {
+        "hp": 300,
+        "speed": 3.0,
+        "radius": 1.3,
+        "gun": {
+          "damage": 24,
+          "interval": 0.15,
+          "proj_speed": 25.0,
+          "range": 14.0,
+          "spread_deg": 3.0
+        },
+        "sub": {
+          "damage": 120,
+          "aoe_radius": 2.5,
+          "range": 10.0,
+          "flight": 0.6,
+          "cooldown": 4.0
+        }
+      }
+    }
+  },
+  "bosses": {
+    "bulldozer": {
+      "display": "불도저",
+      "chapter": 1,
+      "hp": 3200,
+      "radius": 2.5,
+      "speed": 1.5,
+      "contact_damage": 20,
+      "rest": 2.5,
+      "par": 90,
+      "phases": [
+        {
+          "hp_frac": 1.0,
+          "speed_mult": 1.0
+        },
+        {
+          "hp_frac": 0.5,
+          "speed_mult": 1.25,
+          "add_patterns": [
+            "summon_rifle3"
+          ]
+        }
+      ],
+      "patterns": [
+        "charge",
+        "fan5",
+        "ring12"
+      ],
+      "pattern_defs": {
+        "charge": {
+          "type": "charge",
+          "telegraph": 1.3,
+          "dash_speed": 12.0,
+          "damage": 22,
+          "post_rest": 3.0,
+          "max_distance": 14.0,
+          "lock_frac": 0.4
+        },
+        "fan5": {
+          "type": "fan",
+          "telegraph": 0.8,
+          "count": 5,
+          "spread_deg": 50.0,
+          "damage": 8,
+          "proj_speed": 11.0
+        },
+        "ring12": {
+          "type": "ring",
+          "telegraph": 1.0,
+          "count": 12,
+          "damage": 8,
+          "proj_speed": 8.0
+        },
+        "summon_rifle3": {
+          "type": "summon",
+          "telegraph": 1.0,
+          "enemies": {
+            "rifle": 3
+          },
+          "max_uses": 2
+        }
+      }
+    },
+    "heli": {
+      "display": "공격 헬기 (중간보스)",
+      "chapter": 2,
+      "hp": 2000,
+      "radius": 1.5,
+      "speed": 3.0,
+      "flying": true,
+      "keep_range": 7.0,
+      "contact_damage": 0,
+      "rest": 2.2,
+      "par": 70,
+      "phases": [
+        {
+          "hp_frac": 1.0,
+          "speed_mult": 1.0
+        },
+        {
+          "hp_frac": 0.5,
+          "speed_mult": 1.2
+        }
+      ],
+      "patterns": [
+        "fan5",
+        "rockets3",
+        "land",
+        "land"
+      ],
+      "pattern_defs": {
+        "fan5": {
+          "type": "fan",
+          "telegraph": 0.7,
+          "count": 5,
+          "spread_deg": 40.0,
+          "damage": 9,
+          "proj_speed": 12.0
+        },
+        "rockets3": {
+          "type": "aoe",
+          "telegraph": 1.2,
+          "count": 3,
+          "radius": 2.0,
+          "scatter": 2.5,
+          "damage": 20
+        },
+        "land": {
+          "type": "land",
+          "telegraph": 0.5,
+          "duration": 3.5
+        }
+      }
+    },
+    "armored_train": {
+      "display": "장갑 열차",
+      "chapter": 2,
+      "hp": 4000,
+      "radius": 3.0,
+      "speed": 0.0,
+      "contact_damage": 0,
+      "rest": 2.2,
+      "par": 100,
+      "phases": [
+        {
+          "hp_frac": 1.0,
+          "speed_mult": 1.0
+        },
+        {
+          "hp_frac": 0.5,
+          "speed_mult": 1.2
+        }
+      ],
+      "patterns": [
+        "fan9",
+        "mortar3",
+        "summon_rifle4",
+        "sweep"
+      ],
+      "pattern_defs": {
+        "fan9": {
+          "type": "fan",
+          "telegraph": 0.8,
+          "count": 7,
+          "spread_deg": 50.0,
+          "damage": 9,
+          "proj_speed": 11.0
+        },
+        "mortar3": {
+          "type": "aoe",
+          "telegraph": 1.3,
+          "count": 3,
+          "radius": 2.2,
+          "scatter": 3.0,
+          "damage": 18
+        },
+        "summon_rifle4": {
+          "type": "summon",
+          "telegraph": 1.0,
+          "enemies": {
+            "rifle": 2
+          },
+          "max_uses": 4
+        },
+        "sweep": {
+          "type": "sweep",
+          "telegraph": 1.3,
+          "half_width": 1.5,
+          "damage": 22,
+          "post_rest": 3.0
+        }
+      }
+    },
+    "cluster": {
+      "display": "클러스터",
+      "chapter": 3,
+      "hp": 3600,
+      "radius": 2.0,
+      "speed": 2.5,
+      "contact_damage": 12,
+      "rest": 2.0,
+      "par": 100,
+      "phases": [
+        {
+          "hp_frac": 1.0,
+          "speed_mult": 1.0
+        },
+        {
+          "hp_frac": 0.5,
+          "speed_mult": 1.3
+        }
+      ],
+      "patterns": [
+        "charge",
+        "slam",
+        "summon_zombie6",
+        "spit5"
+      ],
+      "pattern_defs": {
+        "charge": {
+          "type": "charge",
+          "telegraph": 1.3,
+          "dash_speed": 10.0,
+          "damage": 22,
+          "post_rest": 2.5,
+          "max_distance": 12.0,
+          "lock_frac": 0.4
+        },
+        "slam": {
+          "type": "aoe_self",
+          "telegraph": 1.0,
+          "radius": 3.0,
+          "damage": 22
+        },
+        "summon_zombie6": {
+          "type": "summon",
+          "telegraph": 1.0,
+          "enemies": {
+            "zombie": 4
+          },
+          "max_uses": 4
+        },
+        "spit5": {
+          "type": "fan",
+          "telegraph": 0.8,
+          "count": 5,
+          "spread_deg": 36.0,
+          "damage": 9,
+          "proj_speed": 7.0
+        }
+      }
+    },
+    "block_golem": {
+      "display": "블록 골렘",
+      "chapter": 4,
+      "hp": 4200,
+      "radius": 2.8,
+      "speed": 1.2,
+      "contact_damage": 15,
+      "rest": 2.2,
+      "par": 120,
+      "phases": [
+        {
+          "hp_frac": 1.0,
+          "speed_mult": 1.0
+        },
+        {
+          "hp_frac": 0.7,
+          "speed_mult": 1.15
+        },
+        {
+          "hp_frac": 0.35,
+          "speed_mult": 1.3
+        }
+      ],
+      "patterns": [
+        "blocks5",
+        "charge",
+        "ring24",
+        "summon_kn2_ar2"
+      ],
+      "pattern_defs": {
+        "blocks5": {
+          "type": "aoe",
+          "telegraph": 1.2,
+          "count": 4,
+          "radius": 1.8,
+          "scatter": 3.5,
+          "damage": 20
+        },
+        "charge": {
+          "type": "charge",
+          "telegraph": 1.3,
+          "dash_speed": 9.0,
+          "damage": 20,
+          "post_rest": 3.0,
+          "max_distance": 12.0,
+          "lock_frac": 0.35
+        },
+        "ring24": {
+          "type": "ring",
+          "telegraph": 1.0,
+          "count": 12,
+          "damage": 11,
+          "proj_speed": 8.5
+        },
+        "summon_kn2_ar2": {
+          "type": "summon",
+          "telegraph": 1.0,
+          "enemies": {
+            "archer": 2
+          },
+          "max_uses": 3
+        }
+      }
+    },
+    "compiler": {
+      "display": "컴파일러",
+      "chapter": 5,
+      "hp": 3800,
+      "radius": 2.5,
+      "speed": 0.0,
+      "contact_damage": 0,
+      "rest": 1.8,
+      "par": 120,
+      "phases": [
+        {
+          "hp_frac": 1.0,
+          "speed_mult": 1.0
+        },
+        {
+          "hp_frac": 0.5,
+          "speed_mult": 1.2,
+          "add_patterns": [
+            "summon_debugger1"
+          ]
+        }
+      ],
+      "patterns": [
+        "summon_drone4",
+        "beam",
+        "ring20",
+        "aoe3"
+      ],
+      "pattern_defs": {
+        "summon_drone4": {
+          "type": "summon",
+          "telegraph": 0.8,
+          "enemies": {
+            "drone": 2
+          },
+          "max_uses": 6
+        },
+        "beam": {
+          "type": "beam",
+          "telegraph": 1.1,
+          "lock_at": 0.6,
+          "length": 14.0,
+          "width": 0.8,
+          "damage": 24
+        },
+        "ring20": {
+          "type": "ring",
+          "telegraph": 1.0,
+          "count": 16,
+          "damage": 12,
+          "proj_speed": 9.0
+        },
+        "aoe3": {
+          "type": "aoe",
+          "telegraph": 1.2,
+          "count": 3,
+          "radius": 2.0,
+          "scatter": 2.5,
+          "damage": 22
+        },
+        "summon_debugger1": {
+          "type": "summon",
+          "telegraph": 1.0,
+          "enemies": {
+            "debugger": 1
+          },
+          "max_uses": 1
+        }
+      }
+    },
+    "overseer": {
+      "display": "감시자 오버시어",
+      "chapter": 6,
+      "hp": 4400,
+      "radius": 2.5,
+      "speed": 2.0,
+      "contact_damage": 15,
+      "rest": 1.8,
+      "par": 150,
+      "phases": [
+        {
+          "hp_frac": 1.0,
+          "speed_mult": 1.0,
+          "rest": 2.0
+        },
+        {
+          "hp_frac": 0.66,
+          "speed_mult": 1.15,
+          "rest": 1.8
+        },
+        {
+          "hp_frac": 0.33,
+          "speed_mult": 1.3,
+          "rest": 1.6,
+          "add_patterns": [
+            "summon_mix"
+          ]
+        }
+      ],
+      "patterns": [
+        "fan9",
+        "ring20",
+        "aoe4",
+        "charge",
+        "beam",
+        "summon_drone2"
+      ],
+      "pattern_defs": {
+        "fan9": {
+          "type": "fan",
+          "telegraph": 0.8,
+          "count": 7,
+          "spread_deg": 50.0,
+          "damage": 10,
+          "proj_speed": 12.0
+        },
+        "ring20": {
+          "type": "ring",
+          "telegraph": 1.0,
+          "count": 16,
+          "damage": 10,
+          "proj_speed": 9.0
+        },
+        "aoe4": {
+          "type": "aoe",
+          "telegraph": 1.2,
+          "count": 4,
+          "radius": 2.0,
+          "scatter": 3.0,
+          "damage": 20
+        },
+        "charge": {
+          "type": "charge",
+          "telegraph": 1.3,
+          "dash_speed": 12.0,
+          "damage": 26,
+          "post_rest": 2.5,
+          "max_distance": 14.0,
+          "lock_frac": 0.4
+        },
+        "beam": {
+          "type": "beam",
+          "telegraph": 1.1,
+          "lock_at": 0.6,
+          "length": 14.0,
+          "width": 0.8,
+          "damage": 22
+        },
+        "summon_drone2": {
+          "type": "summon",
+          "telegraph": 1.0,
+          "enemies": {
+            "drone": 2
+          },
+          "max_uses": 4
+        },
+        "summon_mix": {
+          "type": "summon",
+          "telegraph": 1.0,
+          "enemies": {
+            "debugger": 1,
+            "drone": 2
+          },
+          "max_uses": 1
+        }
+      }
+    }
+  },
+  "progression": {
+    "memory_per_room": {
+      "combat": 30,
+      "rescue": 45,
+      "defend": 40,
+      "rush": 35,
+      "bug": 40,
+      "midboss": 80,
+      "boss": 150
+    },
+    "grade_bonus_mult": {
+      "S": 2.0,
+      "A": 1.5,
+      "B": 1.2,
+      "C": 1.0
+    },
+    "rescue_memory": 25,
+    "modules": {
+      "mobility": {
+        "levels": 10,
+        "dash_cooldown_mult_per_level": -0.03,
+        "dash_distance_per_level": 0.1,
+        "move_speed_per_level": 0.05,
+        "cost_base": 100,
+        "cost_growth": 1.35
+      },
+      "firepower": {
+        "levels": 10,
+        "chip_ammo_mult_per_level": 0.04,
+        "charges_max_per_level": 0.3,
+        "basic_damage_mult_per_level": 0.025,
+        "cost_base": 100,
+        "cost_growth": 1.35
+      },
+      "survival": {
+        "levels": 10,
+        "hp_per_level": 6,
+        "instances_at_levels": [
+          5,
+          10
+        ],
+        "hit_iframes_per_level": 0.02,
+        "cost_base": 100,
+        "cost_growth": 1.35
+      }
+    },
+    "mastery": {
+      "trigger": {
+        "levels": 5,
+        "pistol_interval_mult_per_level": -0.04,
+        "grenade_radius_per_level": 0.15,
+        "knife_damage_per_level": 5
+      },
+      "knuckle": {
+        "levels": 5,
+        "throw_range_per_level": 1.0,
+        "combo3_damage_per_level": 4,
+        "heal_per_level": 1
+      },
+      "edge": {
+        "levels": 5,
+        "reflect_mult_per_level": 0.15,
+        "counter_window_per_level": 0.02,
+        "wave_range_per_level": 1.0
+      }
+    }
+  }
+}

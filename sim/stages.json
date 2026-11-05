@@ -1,0 +1,1089 @@
+{
+  "meta": {
+    "version": "0.2",
+    "description": "ROOM ZERO chapter/room definitions consumed by docs/StageDesign.md and sim/. Pars derived from expert-bot medians (sim/tools/set_pars.py)."
+  },
+  "chapters": [
+    {
+      "chapter": 1,
+      "code": "A",
+      "name": "도심 치안 훈련",
+      "theme": "Simple Town",
+      "act": 1,
+      "rooms": [
+        {
+          "id": "A-01",
+          "type": "combat",
+          "size": "standard",
+          "par": 25,
+          "waves": [
+            {
+              "rifle": 5
+            },
+            {
+              "rifle": 5,
+              "rusher": 3
+            },
+            {
+              "rifle": 4,
+              "rusher": 4
+            }
+          ],
+          "crates": [
+            "H"
+          ],
+          "charges": 1,
+          "intent": "사격·대시 학습. 라이플과 러셔 소개."
+        },
+        {
+          "id": "A-02",
+          "type": "combat",
+          "size": "standard",
+          "par": 25,
+          "waves": [
+            {
+              "rifle": 5,
+              "rusher": 3
+            },
+            {
+              "shielder": 2,
+              "rifle": 5
+            },
+            {
+              "rusher": 6,
+              "rifle": 3
+            }
+          ],
+          "crates": [
+            "S"
+          ],
+          "charges": 0,
+          "intent": "쉴더 측면 공략. 스캐터 칩 소개."
+        },
+        {
+          "id": "A-03",
+          "type": "rescue",
+          "size": "standard",
+          "par": 30,
+          "waves": [
+            {
+              "rifle": 5,
+              "sentry": 1
+            },
+            {
+              "rifle": 5,
+              "rusher": 4,
+              "shielder": 1
+            },
+            {
+              "rifle": 4,
+              "rusher": 3
+            }
+          ],
+          "crates": [],
+          "charges": 0,
+          "rescue": true,
+          "intent": "센트리 소개(너클 휴대 데모). 첫 구출."
+        },
+        {
+          "id": "A-04",
+          "type": "rush",
+          "size": "corridor",
+          "par": 9,
+          "time_limit": 20,
+          "spawn_every": 3.0,
+          "spawn_wave": {
+            "rusher": 2,
+            "rifle": 1
+          },
+          "crates": [],
+          "charges": 0,
+          "intent": "대시와 전진. 멈추지 않는 메탈슬러그 리듬."
+        },
+        {
+          "id": "A-05",
+          "type": "service",
+          "intent": "정비. 모듈 1택, HP 회복, 캐릭터 교체, 체크포인트."
+        },
+        {
+          "id": "A-06",
+          "type": "combat",
+          "size": "large",
+          "par": 35,
+          "waves": [
+            {
+              "rifle": 6,
+              "shielder": 2
+            },
+            {
+              "apc": 1,
+              "rifle": 5
+            },
+            {
+              "rusher": 7,
+              "rifle": 5,
+              "shielder": 1
+            }
+          ],
+          "crates": [
+            "H"
+          ],
+          "charges": 1,
+          "intent": "진압 장갑차 오버라이드. 탑승물의 힘을 체험."
+        },
+        {
+          "id": "A-07",
+          "type": "boss",
+          "size": "large",
+          "par": 60,
+          "boss": "bulldozer",
+          "crates": [
+            "H",
+            "R"
+          ],
+          "charges": 2,
+          "intent": "첫 보스. 돌진 후 경직이 접근 창."
+        }
+      ]
+    },
+    {
+      "chapter": 2,
+      "code": "B",
+      "name": "전진 기지 돌파",
+      "theme": "Simple Military",
+      "act": 1,
+      "rooms": [
+        {
+          "id": "B-01",
+          "type": "combat",
+          "size": "standard",
+          "par": 30,
+          "waves": [
+            {
+              "rifle": 6,
+              "rusher": 2
+            },
+            {
+              "rifle": 5,
+              "shooter": 1
+            },
+            {
+              "rifle": 4,
+              "shielder": 2,
+              "shooter": 1
+            }
+          ],
+          "crates": [
+            "H"
+          ],
+          "charges": 1,
+          "intent": "슈터 소개. 조준선이 보이면 움직여야 한다."
+        },
+        {
+          "id": "B-02",
+          "type": "combat",
+          "size": "standard",
+          "par": 25,
+          "waves": [
+            {
+              "bomber": 2,
+              "rifle": 4
+            },
+            {
+              "rusher": 6,
+              "bomber": 2
+            },
+            {
+              "rifle": 5,
+              "shielder": 2,
+              "bomber": 1
+            }
+          ],
+          "crates": [
+            "S"
+          ],
+          "charges": 0,
+          "intent": "폭탄병 소개. 장판 회피."
+        },
+        {
+          "id": "B-03",
+          "type": "defend",
+          "size": "standard",
+          "par": 45,
+          "duration": 45,
+          "node_hp": 400,
+          "spawn_every": 7.0,
+          "spawn_wave": {
+            "rifle": 3,
+            "rusher": 3
+          },
+          "late_add": {
+            "after": 20,
+            "wave": {
+              "shooter": 1
+            },
+            "every": 2,
+            "max": 2
+          },
+          "crates": [
+            "H"
+          ],
+          "charges": 1,
+          "intent": "첫 수비. 노드 주변 위치 선정."
+        },
+        {
+          "id": "B-04",
+          "type": "rescue",
+          "size": "standard",
+          "par": 30,
+          "waves": [
+            {
+              "sentry": 2,
+              "rifle": 5
+            },
+            {
+              "shielder": 3,
+              "shooter": 2,
+              "rifle": 3
+            }
+          ],
+          "crates": [],
+          "charges": 0,
+          "rescue": true,
+          "intent": "센트리 2기 교차 사격 속 구출."
+        },
+        {
+          "id": "B-05",
+          "type": "service",
+          "intent": "정비."
+        },
+        {
+          "id": "B-06",
+          "type": "boss",
+          "size": "large",
+          "par": 90,
+          "boss": "heli",
+          "adds": {
+            "rifle": 3
+          },
+          "crates": [
+            "R"
+          ],
+          "charges": 2,
+          "midboss": true,
+          "intent": "중간보스 공격 헬기. 착지 창에서만 근접 가능."
+        },
+        {
+          "id": "B-07",
+          "type": "combat",
+          "size": "large",
+          "par": 40,
+          "waves": [
+            {
+              "rifle": 6,
+              "bomber": 2
+            },
+            {
+              "tank": 1,
+              "rifle": 4,
+              "shooter": 1
+            },
+            {
+              "rusher": 8,
+              "shielder": 2
+            }
+          ],
+          "crates": [
+            "H",
+            "S"
+          ],
+          "charges": 1,
+          "intent": "전차 오버라이드. 포격 장판 회피."
+        },
+        {
+          "id": "B-08",
+          "type": "boss",
+          "size": "large",
+          "par": 70,
+          "boss": "armored_train",
+          "crates": [
+            "H",
+            "R"
+          ],
+          "charges": 2,
+          "intent": "장갑 열차. 방을 가로지르는 스윕 뒤 3초 정지가 접근 창."
+        }
+      ]
+    },
+    {
+      "chapter": 3,
+      "code": "C",
+      "name": "오염된 데이터셋",
+      "theme": "Simple Zombies / Apocalypse",
+      "act": 2,
+      "rooms": [
+        {
+          "id": "C-01",
+          "type": "combat",
+          "size": "standard",
+          "par": 30,
+          "waves": [
+            {
+              "zombie": 8
+            },
+            {
+              "zombie": 10,
+              "rifle": 2
+            },
+            {
+              "zombie": 12
+            }
+          ],
+          "crates": [
+            "S"
+          ],
+          "charges": 1,
+          "intent": "오염 데이터 떼. 광역의 가치."
+        },
+        {
+          "id": "C-02",
+          "type": "combat",
+          "size": "standard",
+          "par": 30,
+          "waves": [
+            {
+              "zombie": 8,
+              "brute": 1
+            },
+            {
+              "zombie": 10,
+              "bomber": 2
+            },
+            {
+              "brute": 2,
+              "zombie": 8
+            }
+          ],
+          "crates": [
+            "F"
+          ],
+          "charges": 0,
+          "intent": "변이체 소개. 플레임 칩 소개."
+        },
+        {
+          "id": "C-03",
+          "type": "rescue",
+          "size": "standard",
+          "par": 25,
+          "waves": [
+            {
+              "zombie": 10,
+              "shooter": 2
+            },
+            {
+              "zombie": 12,
+              "brute": 1,
+              "rifle": 3
+            }
+          ],
+          "crates": [],
+          "charges": 0,
+          "rescue": true,
+          "intent": "떼 속에서 구출 대상까지 길 뚫기."
+        },
+        {
+          "id": "C-04",
+          "type": "bug",
+          "size": "standard",
+          "par": 20,
+          "modifier": "tpose",
+          "waves": [
+            {
+              "zombie": 14,
+              "shielder": 2
+            }
+          ],
+          "crates": [],
+          "charges": 1,
+          "intent": "오류 방. T포즈로 멈춘 적이 접근하면 깨어난다."
+        },
+        {
+          "id": "C-05",
+          "type": "defend",
+          "size": "standard",
+          "par": 50,
+          "duration": 50,
+          "node_hp": 500,
+          "spawn_every": 6.0,
+          "spawn_wave": {
+            "zombie": 5
+          },
+          "late_add": {
+            "after": 20,
+            "wave": {
+              "bomber": 1
+            },
+            "every": 2,
+            "max": 3
+          },
+          "crates": [
+            "S"
+          ],
+          "charges": 1,
+          "intent": "노드를 향한 떼. 폭탄병이 자리를 흔든다."
+        },
+        {
+          "id": "C-06",
+          "type": "service",
+          "intent": "정비."
+        },
+        {
+          "id": "C-07",
+          "type": "rush",
+          "size": "corridor",
+          "par": 9,
+          "time_limit": 20,
+          "spawn_every": 2.5,
+          "spawn_wave": {
+            "zombie": 3
+          },
+          "crates": [],
+          "charges": 0,
+          "intent": "떼를 뚫고 질주."
+        },
+        {
+          "id": "C-08",
+          "type": "combat",
+          "size": "large",
+          "par": 40,
+          "waves": [
+            {
+              "zombie": 6,
+              "rifle": 2,
+              "sentry": 1
+            },
+            {
+              "brute": 1,
+              "bomber": 2,
+              "zombie": 6
+            },
+            {
+              "apc": 1,
+              "zombie": 4
+            }
+          ],
+          "crates": [
+            "S",
+            "L"
+          ],
+          "charges": 1,
+          "mixed": true,
+          "intent": "혼합 방(군사 기지에 좀비). 레이저 칩 소개."
+        },
+        {
+          "id": "C-09",
+          "type": "boss",
+          "size": "large",
+          "par": 90,
+          "boss": "cluster",
+          "crates": [
+            "S",
+            "F"
+          ],
+          "charges": 2,
+          "intent": "클러스터. 돌진·슬램·소환. 근접형 보스."
+        }
+      ]
+    },
+    {
+      "chapter": 4,
+      "code": "D",
+      "name": "레거시 빌드",
+      "theme": "Simple Fantasy / Dungeons",
+      "act": 2,
+      "rooms": [
+        {
+          "id": "D-01",
+          "type": "combat",
+          "size": "standard",
+          "par": 30,
+          "waves": [
+            {
+              "archer": 5,
+              "knight": 2
+            },
+            {
+              "archer": 6,
+              "rusher": 4
+            },
+            {
+              "knight": 3,
+              "archer": 4
+            }
+          ],
+          "crates": [
+            "H"
+          ],
+          "charges": 1,
+          "intent": "궁수·기사 소개. 느린 화살은 반사하기 좋다."
+        },
+        {
+          "id": "D-02",
+          "type": "combat",
+          "size": "standard",
+          "par": 30,
+          "waves": [
+            {
+              "mage": 2,
+              "archer": 4
+            },
+            {
+              "knight": 3,
+              "mage": 2
+            },
+            {
+              "archer": 5,
+              "mage": 2,
+              "rusher": 4
+            }
+          ],
+          "crates": [
+            "L"
+          ],
+          "charges": 0,
+          "intent": "마법사 소개. 느리지만 넓은 장판."
+        },
+        {
+          "id": "D-03",
+          "type": "rescue",
+          "size": "standard",
+          "par": 25,
+          "waves": [
+            {
+              "knight": 2,
+              "archer": 4,
+              "sentry": 1
+            },
+            {
+              "mage": 2,
+              "archer": 4,
+              "knight": 1
+            }
+          ],
+          "crates": [],
+          "charges": 0,
+          "rescue": true,
+          "intent": "구출. 유닛 04 격리 지점."
+        },
+        {
+          "id": "D-04",
+          "type": "combat",
+          "size": "standard",
+          "par": 25,
+          "waves": [
+            {
+              "debugger": 1,
+              "archer": 4
+            },
+            {
+              "knight": 2,
+              "archer": 3,
+              "debugger": 1
+            }
+          ],
+          "crates": [
+            "R"
+          ],
+          "charges": 1,
+          "elite": true,
+          "intent": "디버거 첫 등장. 반사 불가 빔."
+        },
+        {
+          "id": "D-05",
+          "type": "bug",
+          "size": "standard",
+          "par": 30,
+          "modifier": "mixed",
+          "waves": [
+            {
+              "knight": 2,
+              "rifle": 4,
+              "archer": 3
+            },
+            {
+              "shooter": 2,
+              "mage": 2,
+              "rusher": 5
+            }
+          ],
+          "crates": [],
+          "charges": 0,
+          "intent": "오류 방(라이플 든 기사). 시뮬레이터 고장 유머."
+        },
+        {
+          "id": "D-06",
+          "type": "service",
+          "intent": "정비."
+        },
+        {
+          "id": "D-07",
+          "type": "defend",
+          "size": "standard",
+          "par": 50,
+          "duration": 50,
+          "node_hp": 500,
+          "spawn_every": 6.0,
+          "spawn_wave": {
+            "archer": 2,
+            "rusher": 3
+          },
+          "late_add": {
+            "after": 20,
+            "wave": {
+              "knight": 1
+            },
+            "every": 2,
+            "max": 3
+          },
+          "crates": [
+            "S"
+          ],
+          "charges": 1,
+          "intent": "수비. 기사가 노드를 밀고 들어온다."
+        },
+        {
+          "id": "D-08",
+          "type": "rush",
+          "size": "corridor",
+          "par": 9,
+          "time_limit": 25,
+          "spawn_every": 3.0,
+          "spawn_wave": {
+            "rusher": 2,
+            "archer": 2
+          },
+          "crates": [],
+          "charges": 0,
+          "intent": "돌파."
+        },
+        {
+          "id": "D-09",
+          "type": "boss",
+          "size": "large",
+          "par": 90,
+          "boss": "block_golem",
+          "crates": [
+            "H",
+            "R"
+          ],
+          "charges": 2,
+          "intent": "블록 골렘. 떨어지는 블록 장판, 파괴될수록 빨라진다."
+        }
+      ]
+    },
+    {
+      "chapter": 5,
+      "code": "E",
+      "name": "격리 구역",
+      "theme": "Simple Sci-Fi / Space",
+      "act": 3,
+      "rooms": [
+        {
+          "id": "E-01",
+          "type": "combat",
+          "size": "standard",
+          "par": 30,
+          "waves": [
+            {
+              "drone": 6,
+              "rifle": 4
+            },
+            {
+              "laser_sentry": 2,
+              "drone": 6
+            },
+            {
+              "drone": 8,
+              "shooter": 2
+            }
+          ],
+          "crates": [
+            "C"
+          ],
+          "charges": 1,
+          "intent": "드론·레이저 센트리 소개. 체이서 칩 소개."
+        },
+        {
+          "id": "E-02",
+          "type": "combat",
+          "size": "standard",
+          "par": 35,
+          "waves": [
+            {
+              "debugger": 1,
+              "drone": 4
+            },
+            {
+              "shielder": 2,
+              "laser_sentry": 1,
+              "drone": 3
+            },
+            {
+              "debugger": 1,
+              "rifle": 4,
+              "drone": 2
+            }
+          ],
+          "crates": [
+            "L"
+          ],
+          "charges": 0,
+          "elite": true,
+          "intent": "디버거가 상시 등장하는 구역."
+        },
+        {
+          "id": "E-03",
+          "type": "rush",
+          "size": "corridor",
+          "par": 8,
+          "time_limit": 25,
+          "spawn_every": 2.5,
+          "spawn_wave": {
+            "drone": 3
+          },
+          "modifier": "deletion_wall",
+          "crates": [],
+          "charges": 0,
+          "intent": "삭제 벽이 뒤에서 밀려온다."
+        },
+        {
+          "id": "E-04",
+          "type": "rescue",
+          "size": "standard",
+          "par": 30,
+          "waves": [
+            {
+              "laser_sentry": 2,
+              "drone": 4,
+              "shooter": 2
+            },
+            {
+              "debugger": 1,
+              "shielder": 2,
+              "drone": 4
+            }
+          ],
+          "crates": [],
+          "charges": 1,
+          "rescue": true,
+          "intent": "구출. 유닛 05 격리 지점."
+        },
+        {
+          "id": "E-05",
+          "type": "service",
+          "intent": "정비."
+        },
+        {
+          "id": "E-06",
+          "type": "combat",
+          "size": "large",
+          "par": 30,
+          "waves": [
+            {
+              "debugger": 3
+            },
+            {
+              "drone": 6
+            }
+          ],
+          "crates": [
+            "R"
+          ],
+          "charges": 2,
+          "midboss": true,
+          "intent": "중간보스 디버거 트리오. 세 빔의 교차."
+        },
+        {
+          "id": "E-07",
+          "type": "defend",
+          "size": "standard",
+          "par": 60,
+          "duration": 60,
+          "node_hp": 600,
+          "spawn_every": 5.0,
+          "spawn_wave": {
+            "drone": 4
+          },
+          "late_add": {
+            "after": 25,
+            "wave": {
+              "laser_sentry": 1
+            },
+            "every": 3,
+            "max": 2
+          },
+          "crates": [
+            "C"
+          ],
+          "charges": 1,
+          "intent": "수비. 드론 떼와 레이저."
+        },
+        {
+          "id": "E-08",
+          "type": "combat",
+          "size": "large",
+          "par": 40,
+          "waves": [
+            {
+              "tank": 1,
+              "drone": 4
+            },
+            {
+              "debugger": 1,
+              "knight": 2,
+              "archer": 4
+            },
+            {
+              "zombie": 8,
+              "laser_sentry": 1
+            }
+          ],
+          "crates": [
+            "H",
+            "S"
+          ],
+          "charges": 1,
+          "mixed": true,
+          "intent": "혼합 방. 모든 데이터셋이 뒤섞인다."
+        },
+        {
+          "id": "E-09",
+          "type": "boss",
+          "size": "large",
+          "par": 80,
+          "boss": "compiler",
+          "crates": [
+            "L",
+            "C"
+          ],
+          "charges": 2,
+          "intent": "컴파일러. 소환형 보스. 소환물을 먼저 처리할지 코어를 칠지."
+        }
+      ]
+    },
+    {
+      "chapter": 6,
+      "code": "Z",
+      "name": "룸 제로",
+      "theme": "Simple Sci-Fi / Office",
+      "act": 3,
+      "rooms": [
+        {
+          "id": "Z-01",
+          "type": "combat",
+          "size": "standard",
+          "par": 35,
+          "waves": [
+            {
+              "rifle": 8,
+              "shielder": 2
+            },
+            {
+              "rusher": 8,
+              "shooter": 2
+            },
+            {
+              "rifle": 6,
+              "bomber": 3,
+              "shielder": 2
+            }
+          ],
+          "crates": [
+            "H"
+          ],
+          "charges": 1,
+          "intent": "스테이지 1의 재현. 같은 적, 다른 숫자."
+        },
+        {
+          "id": "Z-02",
+          "type": "combat",
+          "size": "standard",
+          "par": 35,
+          "waves": [
+            {
+              "zombie": 12,
+              "brute": 2
+            },
+            {
+              "knight": 2,
+              "mage": 2,
+              "rusher": 4
+            },
+            {
+              "drone": 6,
+              "laser_sentry": 1,
+              "rifle": 2
+            }
+          ],
+          "crates": [
+            "S"
+          ],
+          "charges": 0,
+          "intent": "웨이브마다 다른 챕터의 데이터셋."
+        },
+        {
+          "id": "Z-03",
+          "type": "rescue",
+          "size": "standard",
+          "par": 30,
+          "waves": [
+            {
+              "debugger": 1,
+              "rifle": 6
+            },
+            {
+              "debugger": 1,
+              "drone": 6,
+              "shielder": 2
+            }
+          ],
+          "crates": [],
+          "charges": 1,
+          "rescue": true,
+          "intent": "구출. 유닛 06."
+        },
+        {
+          "id": "Z-04",
+          "type": "rush",
+          "size": "corridor",
+          "par": 9,
+          "time_limit": 25,
+          "spawn_every": 2.5,
+          "spawn_wave": {
+            "drone": 2,
+            "rusher": 2
+          },
+          "modifier": "deletion_wall",
+          "crates": [],
+          "charges": 0,
+          "intent": "삭제 벽 돌파."
+        },
+        {
+          "id": "Z-05",
+          "type": "bug",
+          "size": "standard",
+          "par": 30,
+          "modifier": "tpose",
+          "waves": [
+            {
+              "debugger": 2,
+              "knight": 4,
+              "archer": 6
+            }
+          ],
+          "crates": [],
+          "charges": 1,
+          "intent": "오류 방. 멈춰 있는 디버거."
+        },
+        {
+          "id": "Z-06",
+          "type": "service",
+          "intent": "정비. 마지막 교체 기회."
+        },
+        {
+          "id": "Z-07",
+          "type": "defend",
+          "size": "standard",
+          "par": 60,
+          "duration": 60,
+          "node_hp": 600,
+          "spawn_every": 7.0,
+          "spawn_wave": {
+            "rifle": 1,
+            "drone": 3
+          },
+          "late_add": {
+            "after": 30,
+            "wave": {
+              "debugger": 1
+            },
+            "every": 3,
+            "max": 2
+          },
+          "crates": [
+            "L"
+          ],
+          "charges": 1,
+          "intent": "수비. 후반 디버거 투입."
+        },
+        {
+          "id": "Z-08",
+          "type": "combat",
+          "size": "large",
+          "par": 50,
+          "waves": [
+            {
+              "tank": 1,
+              "apc": 1,
+              "rifle": 5
+            },
+            {
+              "debugger": 1,
+              "drone": 6,
+              "shooter": 2
+            },
+            {
+              "brute": 2,
+              "zombie": 10,
+              "rifle": 3
+            }
+          ],
+          "crates": [
+            "R",
+            "L"
+          ],
+          "charges": 1,
+          "intent": "차량 2대. 탈취해서 다음 웨이브를 맞는다."
+        },
+        {
+          "id": "Z-09",
+          "type": "combat",
+          "size": "large",
+          "par": 40,
+          "waves": [
+            {
+              "debugger": 2,
+              "laser_sentry": 1,
+              "drone": 4
+            },
+            {
+              "debugger": 2,
+              "shielder": 2,
+              "rifle": 3
+            }
+          ],
+          "crates": [
+            "H",
+            "C"
+          ],
+          "charges": 1,
+          "elite": true,
+          "intent": "최종 전초. 디버거 4기와 레이저의 교차."
+        },
+        {
+          "id": "Z-10",
+          "type": "boss",
+          "size": "large",
+          "par": 90,
+          "boss": "overseer",
+          "crates": [
+            "H",
+            "R"
+          ],
+          "charges": 3,
+          "intent": "감시자. 모든 패턴, 3페이즈."
+        }
+      ]
+    }
+  ]
+}
